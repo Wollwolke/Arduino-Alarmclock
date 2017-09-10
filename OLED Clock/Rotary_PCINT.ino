@@ -8,9 +8,8 @@
  */
 #include <Arduino.h>
 #include <avr/interrupt.h>
-#include "lib/lib.h"
-#include "lib/rotary/rotary.h"
-#include "lib/U8g2/src/U8g2lib.h"
+#include <rotary.h>
+#include <U8g2lib.h>
 
 extern HardwareSerial Serial;
 

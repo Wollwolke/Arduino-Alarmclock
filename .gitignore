@@ -7,3 +7,4 @@
 # Whitelist folders
 !libraries/
 !OLED\ Clock/
+!.vscode/

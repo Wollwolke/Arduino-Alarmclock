@@ -1,0 +1,35 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/cores/arduino",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/libraries/EEPROM/src",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/libraries/HID/src",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/libraries/SPI/src",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/libraries/SoftwareSerial/src",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/libraries/Wire/src",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/avr/include",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/avr/include/avr",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/avr/include/compat",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/avr/include/util",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/lib/gcc/avr/4.9.2/include",
+                "D:/PortableApps/ArduinoIDE/hardware/tools/avr/lib/gcc/avr/4.9.2/include-fixed",
+                "D:/PortableApps/ArduinoIDE/hardware/arduino/avr/variants/standard",
+                "${workspaceRoot}",
+                "${workspaceRoot}/libraries/Rtc_Pcf8563",
+                "${workspaceRoot}/libraries/rotary",
+                "${workspaceRoot}/libraries/U8g2/src"
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "D:\\PortableApps\\ArduinoIDE\\hardware\\arduino\\avr\\cores\\arduino",
+                    "${workspaceRoot}"
+                ]
+            },
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 2
+}
