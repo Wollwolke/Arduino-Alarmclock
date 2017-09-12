@@ -11,6 +11,7 @@
 #include <rotary.h>
 #include <U8g2lib.h>
 
+
 extern HardwareSerial Serial;
 
 // Initialize the Rotary object
