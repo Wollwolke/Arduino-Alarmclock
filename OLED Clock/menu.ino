@@ -264,7 +264,6 @@ void loop()
   }
   else
   {
-    //DrawTime();
     char time[20];
     char old[20];
     strcpy(time, rtc.formatTime());
