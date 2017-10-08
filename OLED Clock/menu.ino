@@ -65,7 +65,7 @@ void setup()
   Serial.begin(9600);
   Display.begin();
   Display.enableUTF8Print();
-  Display.setContrast(20);
+  Display.setContrast(1);
   rtc.initClock();
   rtc.setDateTime(21, 0, 8, 0, 17, 18, 5, 35);
 

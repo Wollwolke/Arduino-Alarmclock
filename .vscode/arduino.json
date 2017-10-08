@@ -1,5 +1,5 @@
 {
-    "sketch": "OLED Clock/menu.ino",
+    "sketch": "Minion/minion.ino",
     "board": "arduino:avr:nano",
     "configuration": "cpu=atmega328",
     "output": "build",
