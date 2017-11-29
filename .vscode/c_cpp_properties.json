@@ -19,6 +19,7 @@
                 "${workspaceRoot}",
                 "${workspaceRoot}/libraries/Rtc_Pcf8563",
                 "${workspaceRoot}/libraries/rotary",
+                "${workspaceRoot}/libraries/ArduinoMenu-3.1.12/src",
                 "${workspaceRoot}/libraries/U8g2/src"
             ],
             "browse": {
