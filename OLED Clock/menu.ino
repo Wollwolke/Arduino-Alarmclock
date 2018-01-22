@@ -3,7 +3,7 @@
 #include <avr/interrupt.h>
 #include <rotary.h>
 #include <U8g2lib.h>
-#include <Rtc_Pcf8563.h>
+#include <DS3231.h>
 
 extern HardwareSerial Serial;
 
@@ -20,7 +20,7 @@ Rotary r = Rotary(8, 9, 10);
 U8G2_SSD1306_128X64_NONAME_1_HW_I2C Display(U8G2_R0, /*reset=*/U8X8_PIN_NONE);
 
 //init the real time clock
-Rtc_Pcf8563 rtc;
+DS3231 rtc(SDA, SCL);
 
 typedef void(*funcPtr)(void); //typedef für Funktionszeiger
 funcPtr currentStateFunction;  //aktuelle Funktion
@@ -66,8 +66,7 @@ void setup()
   Display.begin();
   Display.enableUTF8Print();
   Display.setContrast(1);
-  rtc.initClock();
-  rtc.setDateTime(21, 0, 8, 0, 17, 18, 5, 35);
+  rtc.begin();
 
   // Pin Change Interrput Initialisation
   cli();
@@ -145,7 +144,7 @@ void DrawTime()
 {
   char time[20];
   char old[20];
-  strcpy(time, rtc.formatTime());
+  strcpy(time, rtc.getTimeStr());
 
   if (strcmp(old, time))
   {
@@ -162,7 +161,8 @@ void DrawTime()
 
 void SetTime() {
   input = NA;
-  byte time[4] = {rtc.getHour(), rtc.getMinute(), rtc.getSecond(), 12}; // hour, minute, second, position
+  Time ctime = rtc.getTime();
+  byte time[4] = {ctime.hour, ctime.min, ctime.sec, 12}; // hour, minute, second, position
   int i = 0;
   int max = 24;
   while (i < 3)

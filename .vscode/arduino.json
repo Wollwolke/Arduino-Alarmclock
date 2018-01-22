@@ -1,7 +1,7 @@
 {
-    "sketch": "Minion/minion.ino",
+    "sketch": "OLED Clock/menu.ino",
     "board": "arduino:avr:nano",
     "configuration": "cpu=atmega328",
     "output": "build",
-    "port": "COM9"
+    "port": "COM3"
 }
