@@ -5,9 +5,11 @@
 
 extern HardwareSerial Serial;
 
-int buttonState = 0;
-unsigned long previousMillis = 0;
 const int interval = 60;
+
+int buttonState = 0;
+int wasRealesed = 0;
+unsigned long previousMillis = 0;
 
 void setup() {
   pinMode(BUTTON, INPUT_PULLUP);
@@ -16,8 +18,10 @@ void setup() {
 }
 
 void loop() {
-  buttonState = digitalRead(BUTTON);
-  if (!buttonState)
+  // may not recognice to short releases...
+  if(1 == digitalRead(BUTTON))
+    wasRealesed = 1;
+  if (!digitalRead(BUTTON) && wasRealesed)
     shift();
 }
 
@@ -27,4 +31,10 @@ void shift(){
   digitalWrite(LED, HIGH);
   while(millis() - previousMillis < interval){}
   digitalWrite(LED, LOW);
+
+  // prevent continuous execution
+  wasRealesed = 0;
+
+  // "debouncing"
+  delay(500);
 }
