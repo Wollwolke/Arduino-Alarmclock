@@ -5,7 +5,7 @@
 
 extern HardwareSerial Serial;
 
-const int interval = 60;
+const int INTERVAL = 60;
 
 int buttonState = 0;
 int wasRealesed = 0;
@@ -26,7 +26,7 @@ void loop() {
 void shift(){
   previousMillis = millis();
   digitalWrite(LED, HIGH);
-  while(millis() - previousMillis < interval){}
+  while(millis() - previousMillis < INTERVAL){}
   digitalWrite(LED, LOW);
 
   // prevent continuous execution
