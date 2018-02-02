@@ -1,37 +1,73 @@
 #include <Arduino.h>
+#include <DebugUtils.h>
 
-#define BUTTON 2
-#define LED LED_BUILTIN
+#define DEBUG
 
-extern HardwareSerial Serial;
+const int BUTTON = 3;
+const int MOSFET = LED_BUILTIN; //5
+const int POTI = A6;
 
-const int INTERVAL = 60;
+int interval = 0;
+int minInterval = 1023;
+int maxInterval = 0;
 
 int buttonState = 0;
 int wasRealesed = 0;
 unsigned long previousMillis = 0;
 
-void setup() {
+void setup()
+{
+  #ifdef DEBUG
+  Serial.begin(115200);
+  #endif
+
   pinMode(BUTTON, INPUT_PULLUP);
-  pinMode(LED, OUTPUT);
+  pinMode(MOSFET, OUTPUT);
+  debugln("Calibration started...");
+  calibrate();
+  debugln("Calibration done.");
 }
 
-void loop() {
-  if(1 == digitalRead(BUTTON))
+void loop()
+{
+  readInterval();
+
+  if (1 == digitalRead(BUTTON))
     wasRealesed = 1;
   if (!digitalRead(BUTTON) && wasRealesed)
     shift();
 }
 
-void shift(){
+void shift()
+{
   previousMillis = millis();
-  digitalWrite(LED, HIGH);
-  while(millis() - previousMillis < INTERVAL){}
-  digitalWrite(LED, LOW);
+  digitalWrite(MOSFET, HIGH);
+  while (millis() - previousMillis < interval);
+  digitalWrite(MOSFET, LOW);
 
   // prevent continuous execution
   wasRealesed = 0;
+}
 
-  // "debouncing"
-  delay(500);
+void calibrate()
+{
+  while (millis() < 5000)
+  {
+    interval = analogRead(POTI);
+    debugln(interval);
+    // record the maximum sensor value
+    if (interval > maxInterval)
+      maxInterval = interval;
+
+    // record the minimum sensor value
+    if (interval < minInterval)
+      minInterval = interval;
+  }
+}
+
+void readInterval()
+{
+  interval = analogRead(POTI);
+  interval = map(interval, minInterval, maxInterval, 50, 200);
+  interval = constrain(interval, 50, 200);
 }
